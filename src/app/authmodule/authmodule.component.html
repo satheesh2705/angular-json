@@ -1,0 +1,25 @@
+    <div class="authComponent">
+        <div class="header">
+            <h1> Welcome To Our Site..!.</h1>
+          
+            <div class="drop-down">
+                <label for="select">SelectOption</label>
+                <div class="co">
+                    <ng-select class="w-20" [(ngModel)]="selectedValue" (change)="valueChange()" [clearable]="false"   placeholder="Select Path">
+                        <ng-option *ngFor="let select of selections" [value]="select.name"  >{{ select.name}}</ng-option>
+                    </ng-select>
+
+                </div>
+            </div>
+             
+
+        </div>
+
+
+
+            <router-outlet>
+            </router-outlet>
+
+    </div>
+
+    <!-- ng generate service your-service-name -->

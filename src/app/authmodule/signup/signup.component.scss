@@ -1,0 +1,48 @@
+.headerTab{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ul{
+        display: flex;
+  
+        li{
+            list-style-type: none;
+            button{
+                border: 1px solid black;
+                outline: none;
+                background-color: white;
+                height: 35px;
+                width: 160px;
+                margin: 2px;
+                border-radius: 5px;
+                &:hover{
+                    background-color: #80ec5f;
+                }
+            }
+        }
+    }
+
+}
+
+
+.Container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .Reactive, .NgForm   {
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .mat-mdc-unelevated-button:not(:disabled){
+                border-radius: 10px;
+            }
+        }
+    }
+}

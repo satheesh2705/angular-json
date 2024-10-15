@@ -1,0 +1,114 @@
+<div class="EditForm">
+
+
+
+  <ng-container *ngIf="formVisible; else showLabel" class="formContainer">
+
+    <div class="changeForm">
+      <button (click)="changeForm()">Reactive</button>
+      <button (click)="changeForm()" >NgForm</button>
+    </div>
+
+    <ng-container *ngIf="indexForm; else secondForm " class="editForm">
+      <form [formGroup]="userDataForm" (ngSubmit)="handleEditDataUsingRF()" class="editingForm">
+        <h1>Reactive Form</h1>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Enter Your Name" name="userName"  required formControlName="userName"
+            minlength="4">
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Enter Your Email" name="userEmail"  required formControlName="userEmail"
+            minlength="4">
+        </mat-form-field>
+  
+        <mat-radio-group name="userType" required formControlName="userType">
+          <mat-radio-button value="Admin">Admin</mat-radio-button>
+          <mat-radio-button value="User">User</mat-radio-button>
+        </mat-radio-group>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter Your Password" name="userPass" formControlName="userPass"
+             required minlength="4">
+        </mat-form-field>
+  
+        <button mat-flat-button type="submit" >Register</button>
+      </form>
+    </ng-container>
+
+      <!-- <ng-template #secondForm>
+        <form class="editingForm" (ngSubmit)="handleEditData()">
+          <h1>NgForm </h1>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter Your Name" name="userName"  required [(ngModel)]="userData.name"
+              minlength="4">
+          </mat-form-field>
+    
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter Your Email" name="userEmail"  required
+            [(ngModel)]="userData.email" minlength="4">
+          </mat-form-field>
+    
+          <mat-radio-group name="userType" required [(ngModel)]="userData.userType">
+            <mat-radio-button value="Admin">Admin</mat-radio-button>
+            <mat-radio-button value="User">User</mat-radio-button>
+          </mat-radio-group>
+    
+          <mat-form-field appearance="fill" [(ngModel)]="userData.password">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter Your Password" name="userPass"
+              required minlength="4">
+          </mat-form-field>
+    
+          <button mat-flat-button type="submit">Register</button>
+        </form>
+      </ng-template> -->
+
+      <ng-template #secondForm>
+        <form class="editingForm" (ngSubmit)="handleEditDataUsingNgForm()" #form="ngForm">
+          <h1>NgForm</h1>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter Your Name" name="userName" required [(ngModel)]="userData.userName" minlength="4">
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter Your Email" name="userEmail" required [(ngModel)]="userData.userEmail" minlength="4">
+          </mat-form-field>
+      
+          <mat-radio-group name="userType" required [(ngModel)]="userData.userType">
+            <mat-radio-button value="Admin">Admin</mat-radio-button>
+            <mat-radio-button value="User">User</mat-radio-button>
+          </mat-radio-group>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter Your Password" name="userPass" required minlength="4" [(ngModel)]="userData.userPass">
+          </mat-form-field>
+      
+          <button mat-flat-button type="submit" [disabled]="!form.valid">Update</button>
+        </form>
+      </ng-template>
+      
+
+  </ng-container>
+
+
+  <ng-template #showLabel>
+    <div class="editFormHeader">
+      <h2>Do You Wanna Edit Your Detail's</h2>
+      <div>
+        <button (click)="openForm()"> Yes</button>
+        <button (click)="closeForm()">No</button>
+      </div>
+    </div>
+  </ng-template>
+
+
+</div>

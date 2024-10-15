@@ -1,0 +1,100 @@
+<div class="login">
+    <div class="headerTab">
+        <h1> Sign Up...</h1>
+        <ul>
+            <li>
+                <button (click)="toggleButton()"
+                [ngStyle]="{'background-color': activeBtn ? '#80ec5f' : 'transparent'}"
+                >Reactive</button>
+            </li>
+            <li>
+                <button (click)="toggleButton()"
+                [ngStyle]="{'background-color': !activeBtn ? '#80ec5f' : 'transparent'}"
+                >Ng Form
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="Container">
+        <div class="Reactive"  
+        *ngIf="activeBtn; else ngForm"
+        >
+            <h1>Reactive Form..</h1>
+           <form  action="#" [formGroup]="userForm" #formDirective="ngForm"  (ngSubmit)="onSubmit()">
+              <mat-form-field >
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Enter Your Name" formControlName="userName">
+                <mat-error *ngIf="userForm.get('userName')?.invalid && userForm.get('userName')?.touched">
+                    <span *ngIf="userForm.get('userName')?.hasError('required')">Number is required.</span>
+                    <span *ngIf="userForm.get('userName')?.hasError('minLength')">Number must be at least 5 characters long.</span>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field >
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="Enter Your E-mail" formControlName="userEmail">
+                <div *ngIf="userForm.get('userEmail')?.invalid && (userForm.get('email')?.touched || userForm.get('userEmail')?.dirty)">
+                    <div *ngIf="userForm.get('userEmail')?.hasError('required')">Email is required.</div>
+                    <div *ngIf="userForm.get('userEmail')?.hasError('minLength')">Invalid email format.</div>
+                  </div>
+              </mat-form-field>
+             
+                <mat-radio-group  formControlName="userType" >
+                  <mat-radio-button value="Admin">Admin</mat-radio-button>
+                  <mat-radio-button value="User">User</mat-radio-button>
+                  <mat-error *ngIf=" userForm.get('userType')?.invalid &&  userForm.get('userType')?.touched ">
+                    <span *ngIf="userForm.get('userType')">Gender is required.</span>
+                  </mat-error>
+                </mat-radio-group>
+
+              <mat-form-field >
+                <mat-label>PassWord</mat-label>
+                <input matInput placeholder="Enter Your PassWord" formControlName="userPass">
+                <mat-error *ngIf="userForm.get('userPass')?.invalid && userForm.get('userPass')?.touched">
+                    <span *ngIf="userForm.get('userPass')?.hasError('required')">Number is required.</span>
+                    <span *ngIf="userForm.get('userPass')?.hasError('minLength')">Number must be at least 5 characters long.</span>
+                </mat-error>
+              </mat-form-field>
+
+              <button mat-flat-button type="submit" [disabled]="userForm.invalid">Submit</button>
+            
+           </form>
+
+        </div>
+        
+        <ng-template #ngForm>
+           <div class="NgForm">
+            <h1>Ng Form</h1>
+            <form #myForm="ngForm" (ngSubmit)="onSubmitNgForm(myForm)">
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input matInput placeholder="Enter Your Name" name="userName" [(ngModel)]="userData.userName" required minlength="4">      
+                </mat-form-field>
+              
+                <mat-form-field>
+                  <mat-label>E-mail</mat-label>
+                  <input matInput type="email" placeholder="Enter Your E-mail" name="userEmail" [(ngModel)]="userData.userEmail" required email="erwfe">
+                </mat-form-field>
+
+                <mat-radio-group  name="userType"  required [(ngModel)]="userData.userType" >
+                  <mat-radio-button value="admin">Admin</mat-radio-button>
+                  <mat-radio-button value="user">User</mat-radio-button>
+                </mat-radio-group>
+              
+                <mat-form-field>
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password" placeholder="Enter Your Password" name="userPass" [(ngModel)]="userData.userPass" required  >
+                </mat-form-field>
+              
+                <button mat-flat-button type="submit" [disabled]="myForm.invalid">Register</button>
+              </form>
+              
+              
+           </div>
+        </ng-template>
+
+    </div>
+
+
+</div>

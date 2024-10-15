@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 6,
+      "userName": "abcde",
+      "userEmail": "abcde3@gmail.com",
+      "userPass": "abcde",
+      "userType": "Admin"
+    },
+    {
+      "id": 5,
+      "userName": "alpha",
+      "userEmail": "alpha3@gmail.com",
+      "userPass": "alpha123",
+      "userType": "admin"
+    },
+    {
+      "id": 351,
+      "userName": "satheesh",
+      "userEmail": "satheesh@3",
+      "userPass": "satheesh",
+      "userType": "Admin"
+    },
+    {
+      "id": 156,
+      "userName": "james",
+      "userEmail": "james@3gmail.com",
+      "userPass": "james",
+      "userType": "admin"
+    }
+  ]
+}

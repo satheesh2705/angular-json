@@ -1,0 +1,74 @@
+<div class="login">
+  <div class="headerTab">
+    <h1>login .!..</h1>
+    <ul>
+      <li>
+        <button
+          (click)="toggleButton()"
+          [ngStyle]="{
+            'background-color': activeBtn ? '#80ec5f' : 'transparent'
+          }"
+        >
+          Reactive
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="toggleButton()"
+          [ngStyle]="{
+            'background-color': !activeBtn ? '#80ec5f' : 'transparent'
+          }"
+        >
+          Ng Form
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="Container">
+
+    <div class="Reactive" *ngIf="activeBtn; else ngForm">
+      <h1>Reactive Form..</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="checkUserThroughReactive()">
+
+        <mat-form-field>
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="Enter Your E-mail"  formControlName="email" />
+          <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Please enter a valid email.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>PassWord</mat-label>
+          <input matInput placeholder="Enter Your PassWord" formControlName="password" />
+          <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Please enter a valid PassWord.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button type="submit"  >Login</button>
+      </form>
+    </div>
+
+    <ng-template #ngForm>
+      <div class="NgForm">
+        <h1>Ng Form</h1>
+        <form #myForm="ngForm" (ngSubmit)="checkUserThroughNgForm()">
+          <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" placeholder="Enter Your E-mail" [(ngModel)]="userData.email" name="email" required minlength="5" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter Your Password" [(ngModel)]="userData.password" name="password" required />
+        </mat-form-field>
+
+          <button mat-flat-button type="submit">Login..</button>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+  <button (click)="rough()">cdvfv</button>
+</div>

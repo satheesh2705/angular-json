@@ -3,11 +3,12 @@ import { ServerModule } from '@angular/platform-server';
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
-
+import { AuthmoduleModule } from './authmodule/authmodule.module';
 @NgModule({
   imports: [
     AppModule,
     ServerModule,
+    AuthmoduleModule
   ],
   bootstrap: [AppComponent],
 })
